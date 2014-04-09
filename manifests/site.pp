@@ -1,12 +1,13 @@
 # source: http://stackoverflow.com/questions/18844199/how-to-fetch-a-remote-file-e-g-from-github-in-a-puppet-file-resource
-define remote_file ($url, $mode = 0644){
-  exec{"retrieve_$title":
+define remote_file ($url, $mode = 0644, $owner = $id){
+  exec { "retrieve_$title":
     command => "/usr/bin/wget -q $url -O $title",
     creates => "$title",
   }
 
-  file{"$title":
-    mode => $mode,
+  file{ "$title":
+    mode    => $mode,
+    owner   => $owner,
     require => Exec["retrieve_$title"],
   }
 }
@@ -47,13 +48,15 @@ file { "/home/vagrant/devstack/local.conf":
 }
 
 remote_file { "/home/vagrant/.zshrc":
-  url  => "http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc",
-  mode => 0600,
+  url   => "http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc",
+  mode  => 0600,
+  owner => 'vagrant',
 }
 
 remote_file { "/home/vagrant/.vimrc":
-  url  => "http://git.grml.org/f/grml-etc-core/etc/vim/vimrc",
-  mode => 0600,
+  url   => "http://git.grml.org/f/grml-etc-core/etc/vim/vimrc",
+  mode  => 0600,
+  owner => 'vagrant',
 }
 
 user { 'vagrant':
