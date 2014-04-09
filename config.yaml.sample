@@ -1,0 +1,9 @@
+box: berendt/ubuntu-14.04-amd64
+hostname: openstack.site
+password: password
+name: Firstname Surname
+email: you@openstack.site
+username: username
+enable_ssh: false
+enable_git: false
+run_stack: true
