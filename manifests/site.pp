@@ -56,6 +56,12 @@ remote_file { "/home/vagrant/.vimrc":
   mode => 0600,
 }
 
+user { 'vagrant':
+  ensure  => present,
+  shell   => '/bin/zsh',
+  require => Package['zsh'],
+}
+
 file { "/home/vagrant/.pip":
     ensure => "directory",
     owner  => "vagrant",
