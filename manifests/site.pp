@@ -115,18 +115,6 @@ if $enable_git == 'true' {
 
 }
 
-exec { "review 85714":
-    cwd => '/home/vagrant/devstack',
-    environment => ["HOME=/home/vagrant"],
-    user => 'vagrant',
-    group => 'vagrant',
-    command => "/usr/bin/git fetch https://review.openstack.org/openstack-dev/devstack refs/changes/14/85714/1 && git cherry-pick FETCH_HEAD",
-    logoutput => false,
-    timeout => 0,
-    returns => 0,
-    require => Vcsrepo['/home/vagrant/devstack'],
-}
-
 if $run_stack == 'true' {
 
     exec {"/home/vagrant/devstack/stack.sh":
@@ -135,7 +123,6 @@ if $run_stack == 'true' {
           File["/home/vagrant/devstack/local.sh"],
           File["/home/vagrant/.pip/pip.conf"],
           Vcsrepo['/home/vagrant/devstack'],
-          Exec['review 85714'],
         ],
         cwd => '/home/vagrant/devstack',
         environment => ["HOME=/home/vagrant"],
