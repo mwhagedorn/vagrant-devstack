@@ -1,0 +1,8 @@
+username: RAX_USERNAME
+api_key: RAX_API_KEY
+flavor: 8GB Standard Instance
+image: Ubuntu 13.10
+private_key_path: /path/to/id_rsa
+key_name: RAX_KEY_NAME
+hostname: devstack
+password: password

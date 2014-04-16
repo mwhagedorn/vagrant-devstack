@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+CONFIG = YAML.load(File.open(File.join(File.dirname(__FILE__), "config.yaml"), File::RDONLY).read)
+
+VAGRANTFILE_API_VERSION = "2" if not defined? VAGRANTFILE_API_VERSION
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+
+  # vagrant box add rackspace https://github.com/mitchellh/vagrant-rackspace/raw/master/dummy.box
+  config.vm.box = "rackspace"
+  config.vm.hostname = CONFIG['hostname']
+  config.ssh.private_key_path = CONFIG['private_key_path']
+
+  config.vm.provider :rackspace do |rs|
+    rs.username = CONFIG['username']
+    rs.api_key  = CONFIG['api_key']
+    rs.flavor   = /#{CONFIG['flavor']}/
+    rs.image    = /#{CONFIG['image']}/
+    rs.key_name = CONFIG['key_name']
+    rs.server_name = CONFIG['hostname']
+  end
+
+  config.vm.provision :shell, :path => "files/bootstrap.sh"
+
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "manifests"
+    puppet.manifest_file  = "site.pp"
+    puppet.facter = {
+      "devstack_password"  => CONFIG['password'],
+      "devstack_hostname"  => CONFIG['hostname'],
+    }
+  end
+
+end
