@@ -31,7 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifest_file  = "site.pp"
       puppet.facter = {
         "devstack_password"  => CONFIG['password'],
-        "devstack_hostname"  => CONFIG['hostname'],
       }
     end
   end
