@@ -12,3 +12,8 @@ vagrant box add rackspace https://github.com/mitchellh/vagrant-rackspace/raw/mas
 ```
 
 After copying `config.yaml.sample` to `config.yaml`  and editing `config.yaml` you can spin up your instance with `vagrant box up --provider=rackspace`
+
+
+![B1 Systems Logo](http://b1-systems.de/typo3temp/GB/8efb9aa347.png)
+
+Powered by [B1 Systems](http://www.b1-systems.de).
