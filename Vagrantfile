@@ -1,7 +1,7 @@
 # author: Christian Berendt <berendt@b1-systems.de>
 
 require 'yaml'
-CONFIG = YAML.load(File.open(File.join(File.dirname(__FILE__), "config.yaml"), File::RDONLY).read)
+CONFIG = YAML.load(File.open(File.join(File.dirname(__FILE__), "configuration.yaml"), File::RDONLY).read)
 
 VAGRANTFILE_API_VERSION = "2" if not defined? VAGRANTFILE_API_VERSION
 
