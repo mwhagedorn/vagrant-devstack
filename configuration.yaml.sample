@@ -7,3 +7,5 @@ username: username
 enable_ssh: false
 enable_git: false
 run_stack: true
+vagrantcloud_username: YOUR_USERNAME
+vagrantcloud_access_key: YOUR_ACCESS_KEY
