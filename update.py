@@ -2,6 +2,7 @@
 
 # author: Christian Berendt <berendt@b1-systems.de>
 
+import copy
 import os
 import semantic_version
 import vagrantcloud
@@ -20,22 +21,23 @@ client = vagrantcloud.Client(
 
 box = client.get_box('berendt/devstack-ubuntu-14.04-amd64')
 
-if len(box.versions) > 1:
-    oldest = box.versions.itervalues().next()
-    oldest.revoke()
-    oldest.delete()
+#if len(box.versions) > 1:
+#    oldest = box.versions.itervalues().next()
+#    oldest.revoke()
+#    oldest.delete()
 
 # add the new version
 latest = box.versions.keys()[-1]
-latest.patch = latest.patch + 1
-version = box.add_version(str(latest))
+latest_new = copy.copy(latest)
+latest_new.patch = latest_new.patch + 1
+version = box.add_version(str(latest_new))
 version.description = "![B1 Systems Logo](https://b1-systems.de/typo3temp/GB/8efb9aa347.png)\n\nPowered by [B1 Systems](http://www.b1-systems.de)."
 version.update()
 
 # add the virtualbox provider with the new url
 provider = version.add_provider("virtualbox")
 provider.hosted = 'false'
-provider.original_url = "http://share.cabtec.net/vagrant/devstack-ubuntu-14.04-amd64-{}.box".format(str(latest))
+provider.url = "http://share.cabtec.net/vagrant/devstack-ubuntu-14.04-amd64-{}.box".format(str(latest))
 provider.update()
 
 # release the new version
