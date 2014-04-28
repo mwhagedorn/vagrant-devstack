@@ -53,12 +53,6 @@ remote_file { "/home/vagrant/.zshrc":
   owner => 'vagrant',
 }
 
-remote_file { "/home/vagrant/.vimrc":
-  url   => "http://git.grml.org/f/grml-etc-core/etc/vim/vimrc",
-  mode  => 0600,
-  owner => 'vagrant',
-}
-
 user { 'vagrant':
   ensure  => present,
   shell   => '/bin/zsh',
