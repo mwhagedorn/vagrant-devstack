@@ -21,10 +21,10 @@ client = vagrantcloud.Client(
 
 box = client.get_box('berendt/devstack-ubuntu-14.04-amd64')
 
-#if len(box.versions) > 1:
-#    oldest = box.versions.itervalues().next()
-#    oldest.revoke()
-#    oldest.delete()
+if len(box.versions) > 1:
+    oldest = box.versions.itervalues().next()
+    oldest.revoke()
+    oldest.delete()
 
 # add the new version
 latest = box.versions.keys()[-1]
