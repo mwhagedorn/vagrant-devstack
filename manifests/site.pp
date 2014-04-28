@@ -12,7 +12,7 @@ define remote_file ($url, $mode = 0644, $owner = $id){
   }
 }
 
-package { ["git", "vim", "zsh"]:
+package { ["git", "vim", "zsh", "tmux"]:
     ensure => "installed",
 }
 
