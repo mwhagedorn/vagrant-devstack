@@ -11,7 +11,7 @@ Then add a an empty box providing Rackspace boxes
 vagrant box add rackspace https://github.com/mitchellh/vagrant-rackspace/raw/master/dummy.box
 ```
 
-After copying `config.yaml.sample` to `config.yaml`  and editing `config.yaml` you can spin up your instance with `vagrant box up --provider=rackspace`
+After copying `configuration.yaml.sample` to `configuration.yaml`  and editing `configuration.yaml` you can spin up your instance with `vagrant box up --provider=rackspace`
 
 
 ![B1 Systems Logo](http://b1-systems.de/typo3temp/GB/8efb9aa347.png)
