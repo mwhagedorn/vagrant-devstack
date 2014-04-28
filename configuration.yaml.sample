@@ -1,4 +1,4 @@
-box: berendt/ubuntu-14.04-amd64
+box: ubuntu/trusty64
 hostname: openstack.site
 password: password
 name: Firstname Surname
