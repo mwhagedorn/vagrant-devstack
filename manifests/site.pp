@@ -53,6 +53,12 @@ remote_file { "/home/vagrant/.zshrc":
   owner => 'vagrant',
 }
 
+remote_file { "/home/vagrant/.zshrc.local":
+  url   => "http://git.grml.org/f/grml-etc-core/etc/skel/.zshrc",
+  mode  => 0600,
+  owner => 'vagrant',
+}
+
 user { 'vagrant':
   ensure  => present,
   shell   => '/bin/zsh',
