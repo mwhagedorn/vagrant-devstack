@@ -1,5 +1,5 @@
 # source: http://stackoverflow.com/questions/18844199/how-to-fetch-a-remote-file-e-g-from-github-in-a-puppet-file-resource
-define remote_file ($url, $mode = 0644, $owner = $id){
+define remote_file ($url, $mode = 0644, $owner = $id, $group = $id){
   exec { "retrieve_$title":
     command => "/usr/bin/wget -q $url -O $title",
     creates => "$title",
@@ -8,6 +8,7 @@ define remote_file ($url, $mode = 0644, $owner = $id){
   file{ "$title":
     mode    => $mode,
     owner   => $owner,
+    group   => $group,
     require => Exec["retrieve_$title"],
   }
 }
