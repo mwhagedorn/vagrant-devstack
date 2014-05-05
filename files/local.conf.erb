@@ -44,13 +44,13 @@ API_RATE_LIMIT=False
 #LDAP_PASSWORD=<%= @devstack_password %>
 #enable_service ldap
 
-#SWIFT_HASH=91342613-3ac6-4729-945b-87e87bcbb8c7
-#SWIFT_REPLICAS=1
-#enable_service s-proxy
-#enable_service s-object
-#enable_service s-container
-#enable_service s-account
-#enable_service c-bak
+SWIFT_HASH=91342613-3ac6-4729-945b-87e87bcbb8c7
+SWIFT_REPLICAS=1
+enable_service s-proxy
+enable_service s-object
+enable_service s-container
+enable_service s-account
+enable_service c-bak
 
 RECLONE=True
 SYSLOG=True
@@ -62,3 +62,5 @@ IMAGE_URLS+=",http://mirror.cabtec.net/images/Fedora-x86_64-20-20131211.1-sda.qc
 
 LOGFILE=$HOME/stack.log
 SCREEN_LOGDIR=/opt/stack/logs
+
+INSTALL_TESTONLY_PACKAGES=True
