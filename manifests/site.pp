@@ -24,26 +24,26 @@ vcsrepo { "/home/vagrant/devstack":
 }
 
 file { "/home/vagrant/devstack":
-    ensure => directory,
+    ensure  => directory,
     recurse => true,
-    owner => "vagrant",
-    group => "vagrant",
+    owner   => "vagrant",
+    group   => "vagrant",
     require => Vcsrepo['/home/vagrant/devstack'],
 }
 
 file { "/home/vagrant/devstack/local.sh":
-    ensure => present,
-    source => "/vagrant/files/local.sh",
-    owner => "vagrant",
-    group => "vagrant",
+    ensure  => present,
+    source  => "/vagrant/files/local.sh",
+    owner   => "vagrant",
+    group   => "vagrant",
     require => Vcsrepo['/home/vagrant/devstack'],
 }
 
 file { "/home/vagrant/devstack/local.conf":
-    ensure => present,
+    ensure  => present,
     content => template("/vagrant/files/local.conf.erb"),
-    owner => "vagrant",
-    group => "vagrant",
+    owner   => "vagrant",
+    group   => "vagrant",
     require => Vcsrepo['/home/vagrant/devstack'],
 }
 
@@ -51,12 +51,14 @@ remote_file { "/home/vagrant/.zshrc":
   url   => "http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc",
   mode  => 0600,
   owner => 'vagrant',
+  group => "vagrant",
 }
 
 remote_file { "/home/vagrant/.zshrc.local":
   url   => "http://git.grml.org/f/grml-etc-core/etc/skel/.zshrc",
   mode  => 0600,
   owner => 'vagrant',
+  group => "vagrant",
 }
 
 user { 'vagrant':
@@ -73,20 +75,20 @@ file { "/home/vagrant/.pip":
 }
 
 file { "/home/vagrant/.pip/pip.conf":
-    ensure => present,
-    source => "/vagrant/files/pip.conf",
-    owner => "vagrant",
-    group => "vagrant",
-    mode => 640,
+    ensure  => present,
+    source  => "/vagrant/files/pip.conf",
+    owner   => "vagrant",
+    group   => "vagrant",
+    mode    => 640,
     require => File['/home/vagrant/.pip']
 }
 
 file { "/etc/motd":
     ensure => present,
     source => "/vagrant/files/motd",
-    owner => "root",
-    group => "root",
-    mode => 644,
+    owner  => "root",
+    group  => "root",
+    mode   => 644,
 }
 
 if $enable_git == 'true' {
