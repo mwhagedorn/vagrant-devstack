@@ -68,22 +68,6 @@ user { 'vagrant':
   require => Package['zsh'],
 }
 
-file { "/home/vagrant/.pip":
-    ensure => "directory",
-    owner  => "vagrant",
-    group  => "vagrant",
-    mode   => 750,
-}
-
-file { "/home/vagrant/.pip/pip.conf":
-    ensure  => present,
-    source  => "/vagrant/files/pip.conf",
-    owner   => "vagrant",
-    group   => "vagrant",
-    mode    => 640,
-    require => File['/home/vagrant/.pip']
-}
-
 file { "/etc/motd":
     ensure => present,
     source => "/vagrant/files/motd",
@@ -124,7 +108,6 @@ if $run_stack == 'true' {
         require => [
           File["/home/vagrant/devstack/local.conf"],
           File["/home/vagrant/devstack/local.sh"],
-          File["/home/vagrant/.pip/pip.conf"],
           Vcsrepo['/home/vagrant/devstack'],
         ],
         cwd => '/home/vagrant/devstack',

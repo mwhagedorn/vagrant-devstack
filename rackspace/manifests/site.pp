@@ -40,28 +40,12 @@ file { "/opt/stack/devstack/local.conf":
   require => Vcsrepo['/opt/stack/devstack'],
 }
 
-file { "/opt/stack/.pip":
-  ensure => "directory",
-  owner  => "stack",
-  group  => "stack",
-  mode   => 750,
-}
-
 file { "/root/devstack":
   ensure => "absent",
   purge => true,
   recurse => true,
   force => true,
   require => Exec['/root/devstack/tools/create-stack-user.sh'],
-}
-
-file { "/opt/stack/.pip/pip.conf":
-  ensure => present,
-  source => "/vagrant/files/pip.conf",
-  owner => "stack",
-  group => "stack",
-  mode => 640,
-  require => File['/opt/stack/.pip'],
 }
 
 file { "/etc/motd":
@@ -88,7 +72,6 @@ exec {"/opt/stack/devstack/stack.sh":
   require => [
     File["/opt/stack/devstack/local.conf"],
     File["/opt/stack/devstack/local.sh"],
-    File["/opt/stack/.pip/pip.conf"],
     Exec["/root/devstack/tools/create-stack-user.sh"],
     Vcsrepo['/opt/stack/devstack'],
   ],
