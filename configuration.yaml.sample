@@ -1,11 +1,12 @@
 box: ubuntu/trusty64
-hostname: openstack.site
-password: password
-name: Firstname Surname
 email: you@openstack.site
-username: username
-enable_ssh: false
 enable_git: false
+enable_ssh: false
+hostname: openstack.site
+initialize_virtual_environments: true
+name: Firstname Surname
+password: password
 run_stack: true
-vagrantcloud_username: YOUR_USERNAME
+username: username
 vagrantcloud_access_key: YOUR_ACCESS_KEY
+vagrantcloud_username: YOUR_USERNAME

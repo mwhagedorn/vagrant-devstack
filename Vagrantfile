@@ -36,6 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "git_email"          => CONFIG['email'],
         "enable_ssh"         => CONFIG['enable_ssh'],
         "run_stack"          => CONFIG['run_stack'],
+        "venv"               => CONFIG['venv'],
       }
     end
 
