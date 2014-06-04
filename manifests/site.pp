@@ -40,6 +40,13 @@ file { "/home/vagrant/devstack/local.sh":
     require => Vcsrepo['/home/vagrant/devstack'],
 }
 
+file { "/home/vagrant/venv.sh":
+    ensure  => present,
+    source  => "/vagrant/files/venv.sh",
+    owner   => "vagrant",
+    group   => "vagrant",
+}
+
 file { "/home/vagrant/devstack/local.conf":
     ensure  => present,
     content => template("/vagrant/files/local.conf.erb"),
@@ -134,6 +141,25 @@ if $run_stack == 'true' {
         logoutput => false,
         timeout => 0,
         returns => 0,
+    }
+
+    if $venv == 'true' {
+
+        exec {"/home/vagrant/venv.sh":
+            require => [
+              File["/home/vagrant/venv.sh"],
+              Exec['/home/vagrant/devstack/stack.sh'],
+            ],
+            cwd => '/home/vagrant',
+            environment => ["HOME=/home/vagrant"],
+            user => 'vagrant',
+            group => 'vagrant',
+            command => "/home/vagrant/venv.sh",
+            logoutput => false,
+            timeout => 0,
+            returns => 0,
+        }
+
     }
 
 }
