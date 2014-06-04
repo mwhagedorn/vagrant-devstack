@@ -35,6 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "gitreview_username" => CONFIG['username'],
         "git_email"          => CONFIG['email'],
         "enable_ssh"         => CONFIG['enable_ssh'],
+        "enable_git"         => CONFIG['enable_git'],
         "remote_address"     => CONFIG['remote_address'],
         "run_stack"          => CONFIG['run_stack'],
         "venv"               => CONFIG['venv'],

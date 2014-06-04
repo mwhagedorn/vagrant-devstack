@@ -83,6 +83,35 @@ file { "/etc/motd":
     mode   => 644,
 }
 
+if $enable_ssh == 'true' {
+
+    file { "/home/vagrant/.ssh":
+        ensure => "directory",
+        owner  => "vagrant",
+        group  => "vagrant",
+        mode   => 700,
+    }
+
+    file { "/home/vagrant/.ssh/id_rsa":
+        ensure   => present,
+        source   => "/vagrant/files/id_rsa",
+        owner    => "vagrant",
+        group    => "vagrant",
+        mode     => 600,
+        require  => File['/home/vagrant/.ssh'],
+    }
+
+    file { "/home/vagrant/.ssh/id_rsa.pub":
+        ensure   => present,
+        source   => "/vagrant/files/id_rsa.pub",
+        owner    => "vagrant",
+        group    => "vagrant",
+        mode     => 600,
+        require  => File['/home/vagrant/.ssh'],
+    }
+
+}
+
 if $enable_git == 'true' {
 
     exec { "git config --global user.name '$git_name'":
@@ -160,35 +189,6 @@ if $run_stack == 'true' {
             returns => 0,
         }
 
-    }
-
-}
-
-if $enable_ssh == 'true' {
-
-    file { "/home/vagrant/.ssh":
-        ensure => "directory",
-        owner  => "vagrant",
-        group  => "vagrant",
-        mode   => 700,
-    }
-
-    file { "/home/vagrant/.ssh/id_rsa":
-        ensure   => present,
-        source   => "/vagrant/files/id_rsa",
-        owner    => "vagrant",
-        group    => "vagrant",
-        mode     => 600,
-        require  => File['/home/vagrant/.ssh'],
-    }
-
-    file { "/home/vagrant/.ssh/id_rsa.pub":
-        ensure   => present,
-        source   => "/vagrant/files/id_rsa.pub",
-        owner    => "vagrant",
-        group    => "vagrant",
-        mode     => 600,
-        require  => File['/home/vagrant/.ssh'],
     }
 
 }
