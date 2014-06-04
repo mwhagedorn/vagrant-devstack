@@ -5,6 +5,7 @@ enable_ssh: false
 hostname: openstack.site
 name: Firstname Surname
 password: password
+remote_address: 127.0.0.1
 run_stack: true
 vagrantcloud_access_key: YOUR_ACCESS_KEY
 vagrantcloud_username: YOUR_USERNAME

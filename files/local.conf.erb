@@ -54,7 +54,7 @@ enable_service c-bak
 
 RECLONE=True
 SYSLOG=True
-NOVNCPROXY_URL="http://<%= @ipaddress %>:6080/vnc_auto.html"
+NOVNCPROXY_URL="http://<%= @remote_address  %>:6080/vnc_auto.html"
 
 IMAGE_URLS="http://mirror.cabtec.net/images/cirros-0.3.2-x86_64-uec.tar.gz"
 IMAGE_URLS+=",http://mirror.cabtec.net/images/Fedora-x86_64-20-20140407-sda.qcow2"
