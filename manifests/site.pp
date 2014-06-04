@@ -13,7 +13,7 @@ define remote_file ($url, $mode = 0644, $owner = $id, $group = $id){
   }
 }
 
-package { ["git", "vim", "zsh", "tmux"]:
+package { ["git", "vim", "zsh", "tmux", "git-review"]:
     ensure => "installed",
 }
 
@@ -78,10 +78,6 @@ file { "/etc/motd":
 
 if $enable_git == 'true' {
 
-    package { "git-review":
-        ensure => "installed",
-    }
-
     exec { "git config --global user.name '$git_name'":
         path => '/usr/bin/',
         environment => ["HOME=/home/vagrant"],
@@ -95,6 +91,26 @@ if $enable_git == 'true' {
     }
 
     exec { "git config --global gitreview.username '$gitreview_username'":
+        path        => '/usr/bin/',
+        environment => ["HOME=/home/vagrant"],
+        require     => Package['git-review', 'git'],
+    }
+
+} else {
+
+    exec { "git config --global user.name 'vagrant'":
+        path => '/usr/bin/',
+        environment => ["HOME=/home/vagrant"],
+        require => Package['git'],
+    }
+
+    exec { "git config --global user.email 'vagrant@$fqdn'":
+        path        => '/usr/bin/',
+        environment => ["HOME=/home/vagrant"],
+        require     => Package['git'],
+    }
+
+    exec { "git config --global gitreview.username 'vagrant'":
         path        => '/usr/bin/',
         environment => ["HOME=/home/vagrant"],
         require     => Package['git-review', 'git'],
