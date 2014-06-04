@@ -1,9 +1,9 @@
 box: ubuntu/trusty64
-email: you@openstack.site
+email: vagrant@openstack.site
 enable_git: false
 enable_ssh: false
 hostname: openstack.site
-name: Firstname Surname
+name: Vagrant
 password: password
 remote_address: 127.0.0.1
 run_stack: true
