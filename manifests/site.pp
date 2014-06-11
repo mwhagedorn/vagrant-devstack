@@ -167,7 +167,7 @@ if $run_stack == 'true' {
         user => 'vagrant',
         group => 'vagrant',
         command => "/home/vagrant/devstack/stack.sh",
-        logoutput => true,
+        logoutput => false,
         timeout => 0,
         returns => 0,
     }
@@ -184,7 +184,7 @@ if $run_stack == 'true' {
             user => 'vagrant',
             group => 'vagrant',
             command => "/home/vagrant/venv.sh",
-            logoutput => true,
+            logoutput => false,
             timeout => 0,
             returns => 0,
         }

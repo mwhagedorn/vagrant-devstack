@@ -3,8 +3,14 @@ email: vagrant@openstack.site
 enable_git: false
 enable_ssh: false
 hostname: openstack.site
+more_images: false
+more_network_services: false
 name: Vagrant
 password: password
 remote_address: 127.0.0.1
 run_stack: true
-venv: true
+use_ceilometer: false
+use_heat: false
+use_ldap: false
+use_swift: false
+venv: false

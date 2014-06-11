@@ -6,10 +6,10 @@ enable_service q-agt
 enable_service q-dhcp
 enable_service q-l3
 enable_service q-meta
-enable_service q-fwaas
+<% if more_network_services == true %>enable_service q-fwaas
 enable_service q-lbaas
 enable_service q-vpn
-enable_service neutron
+enable_service neutron<% end %>
 
 Q_PLUGIN=ml2
 ENABLE_TENANT_TUNNELS=True
@@ -18,19 +18,19 @@ Q_ML2_TENANT_NETWORK_TYPE=gre
 Q_ML2_PLUGIN_TYPE_DRIVERS=local,flat,gre
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch
 
-enable_service heat
+<% if use_heat == true %>enable_service heat
 enable_service h-api
 enable_service h-api-cfn
 enable_service h-api-cw
-enable_service h-eng
+enable_service h-eng<% end %>
 
-enable_service ceilometer-acompute
+<% if use_ceilometer == true %>enable_service ceilometer-acompute
 enable_service ceilometer-acentral
 enable_service ceilometer-collector
 enable_service ceilometer-alarm-singleton
 enable_service ceilometer-alarm-notifier
 enable_service ceilometer-api
-CEILOMETER_BACKEND=mongo
+CEILOMETER_BACKEND=mongo<% end %>
 
 DATABASE_PASSWORD=<%= @devstack_password %>
 RABBIT_PASSWORD=<%= @devstack_password %>
@@ -41,25 +41,25 @@ ADMIN_PASSWORD=<%= @devstack_password %>
 KEYSTONE_CATALOG_BACKEND=sql
 API_RATE_LIMIT=False
 
-#LDAP_PASSWORD=<%= @devstack_password %>
-#enable_service ldap
+<% if use_ldap == true %>LDAP_PASSWORD=<%= @devstack_password %>
+enable_service ldap<% end %>
 
-SWIFT_HASH=91342613-3ac6-4729-945b-87e87bcbb8c7
+<% if use_swift == true %>SWIFT_HASH=91342613-3ac6-4729-945b-87e87bcbb8c7
 SWIFT_REPLICAS=1
 enable_service s-proxy
 enable_service s-object
 enable_service s-container
 enable_service s-account
-enable_service c-bak
+enable_service c-bak<% end %>
 
 RECLONE=True
 SYSLOG=True
 NOVNCPROXY_URL="http://<%= @remote_address  %>:6080/vnc_auto.html"
 
 IMAGE_URLS="http://mirror.cabtec.net/images/cirros-0.3.2-x86_64-uec.tar.gz"
-IMAGE_URLS+=",http://mirror.cabtec.net/images/Fedora-x86_64-20-20140407-sda.qcow2"
-IMAGE_URLS+=",http://mirror.cabtec.net/images/trusty-server-cloudimg-amd64.tar.gz"
-IMAGE_URLS+=",http://mirror.cabtec.net/images/utopic-server-cloudimg-amd64.tar.gz"
+
+<% if more_images == true %>IMAGE_URLS+=",http://mirror.cabtec.net/images/trusty-server-cloudimg-amd64.tar.gz"
+IMAGE_URLS+=",http://mirror.cabtec.net/images/utopic-server-cloudimg-amd64.tar.gz"<% end %>
 
 LOGFILE=$HOME/stack.log
 SCREEN_LOGDIR=/opt/stack/logs

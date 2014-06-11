@@ -29,16 +29,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "manifests"
       puppet.manifest_file  = "site.pp"
       puppet.facter = {
-        "devstack_password"  => CONFIG['password'],
-        "devstack_hostname"  => CONFIG['hostname'],
-        "git_name"           => CONFIG['name'],
-        "gitreview_username" => CONFIG['username'],
-        "git_email"          => CONFIG['email'],
-        "enable_ssh"         => CONFIG['enable_ssh'],
-        "enable_git"         => CONFIG['enable_git'],
-        "remote_address"     => CONFIG['remote_address'],
-        "run_stack"          => CONFIG['run_stack'],
-        "venv"               => CONFIG['venv'],
+        "devstack_password"     => CONFIG['password'],
+        "devstack_hostname"     => CONFIG['hostname'],
+        "git_name"              => CONFIG['name'],
+        "gitreview_username"    => CONFIG['username'],
+        "git_email"             => CONFIG['email'],
+        "enable_ssh"            => CONFIG['enable_ssh'],
+        "enable_git"            => CONFIG['enable_git'],
+        "remote_address"        => CONFIG['remote_address'],
+        "run_stack"             => CONFIG['run_stack'],
+        "venv"                  => CONFIG['venv'],
+        "more_network_services" => CONFIG['more_network_services'],
+        "more_images"           => CONFIG['more_images'],
+        "use_heat"              => CONFIG['use_heat'],
+        "use_ceilometer"        => CONFIG['use_ceilometer'],
+        "use_ldap"              => CONFIG['use_ldap'],
+        "use_swift"             => CONFIG['use_swift'],
       }
     end
 
