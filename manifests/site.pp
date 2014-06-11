@@ -126,7 +126,7 @@ if $enable_git == 'true' {
         require     => Package['git'],
     }
 
-    exec { "git config --global gitreview.username '$gitreview_username'":
+    exec { "git config --global --add gitreview.username '$gitreview_username'":
         path        => '/usr/bin/',
         environment => ["HOME=/home/vagrant"],
         require     => Package['git-review', 'git'],
