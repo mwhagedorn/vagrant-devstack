@@ -59,7 +59,9 @@ NOVNCPROXY_URL="http://<%= @remote_address  %>:6080/vnc_auto.html"
 IMAGE_URLS="http://mirror.cabtec.net/images/cirros-0.3.2-x86_64-uec.tar.gz"
 
 <% if @more_images == true %>IMAGE_URLS+=",http://mirror.cabtec.net/images/trusty-server-cloudimg-amd64.tar.gz"
-IMAGE_URLS+=",http://mirror.cabtec.net/images/utopic-server-cloudimg-amd64.tar.gz"<% end %>
+IMAGE_URLS+=",http://mirror.cabtec.net/images/utopic-server-cloudimg-amd64.tar.gz"
+IMAGE_URLS+=",http://mirror.cabtec.net/images/opensuse-13.1-amd64.tar.gz"
+IMAGE_URLS+=",http://mirror.cabtec.net/images/sles11-sp3-amd64.tar.gz"<% end %>
 
 LOGFILE=$HOME/stack.log
 SCREEN_LOGDIR=/opt/stack/logs
