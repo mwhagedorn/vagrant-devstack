@@ -64,4 +64,5 @@ IMAGE_URLS+=",http://mirror.cabtec.net/images/utopic-server-cloudimg-amd64.tar.g
 LOGFILE=$HOME/stack.log
 SCREEN_LOGDIR=/opt/stack/logs
 
-INSTALL_TESTONLY_PACKAGES=True
+<% if venv == true %>INSTALL_TESTONLY_PACKAGES=True<%end %>
+<% if venv == false%>INSTALL_TESTONLY_PACKAGES=False<%end %>
