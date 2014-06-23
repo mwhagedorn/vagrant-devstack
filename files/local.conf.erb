@@ -6,7 +6,7 @@ enable_service q-agt
 enable_service q-dhcp
 enable_service q-l3
 enable_service q-meta
-<% if more_network_services == true %>enable_service q-fwaas
+<% if @more_network_services == true %>enable_service q-fwaas
 enable_service q-lbaas
 enable_service q-vpn
 enable_service neutron<% end %>
@@ -18,13 +18,13 @@ Q_ML2_TENANT_NETWORK_TYPE=gre
 Q_ML2_PLUGIN_TYPE_DRIVERS=local,flat,gre
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch
 
-<% if use_heat == true %>enable_service heat
+<% if @use_heat == true %>enable_service heat
 enable_service h-api
 enable_service h-api-cfn
 enable_service h-api-cw
 enable_service h-eng<% end %>
 
-<% if use_ceilometer == true %>enable_service ceilometer-acompute
+<% if @use_ceilometer == true %>enable_service ceilometer-acompute
 enable_service ceilometer-acentral
 enable_service ceilometer-collector
 enable_service ceilometer-alarm-singleton
@@ -41,10 +41,10 @@ ADMIN_PASSWORD=<%= @devstack_password %>
 KEYSTONE_CATALOG_BACKEND=sql
 API_RATE_LIMIT=False
 
-<% if use_ldap == true %>LDAP_PASSWORD=<%= @devstack_password %>
+<% if @use_ldap == true %>LDAP_PASSWORD=<%= @devstack_password %>
 enable_service ldap<% end %>
 
-<% if use_swift == true %>SWIFT_HASH=91342613-3ac6-4729-945b-87e87bcbb8c7
+<% if @use_swift == true %>SWIFT_HASH=91342613-3ac6-4729-945b-87e87bcbb8c7
 SWIFT_REPLICAS=1
 enable_service s-proxy
 enable_service s-object
@@ -58,11 +58,11 @@ NOVNCPROXY_URL="http://<%= @remote_address  %>:6080/vnc_auto.html"
 
 IMAGE_URLS="http://mirror.cabtec.net/images/cirros-0.3.2-x86_64-uec.tar.gz"
 
-<% if more_images == true %>IMAGE_URLS+=",http://mirror.cabtec.net/images/trusty-server-cloudimg-amd64.tar.gz"
+<% if @more_images == true %>IMAGE_URLS+=",http://mirror.cabtec.net/images/trusty-server-cloudimg-amd64.tar.gz"
 IMAGE_URLS+=",http://mirror.cabtec.net/images/utopic-server-cloudimg-amd64.tar.gz"<% end %>
 
 LOGFILE=$HOME/stack.log
 SCREEN_LOGDIR=/opt/stack/logs
 
-<% if venv == true %>INSTALL_TESTONLY_PACKAGES=True<% end %>
-<% if venv == false %>INSTALL_TESTONLY_PACKAGES=False<% end %>
+<% if @venv == true %>INSTALL_TESTONLY_PACKAGES=True<% end %>
+<% if @venv == false %>INSTALL_TESTONLY_PACKAGES=False<% end %>
