@@ -1,4 +1,4 @@
-# vagrant-devstack [![Gittip](http://img.shields.io/gittip/berendt.svg)](https://www.gittip.com/berendt/)
+# vagrant-devstack
 
 A template for a [Vagrant](http://www.vagrantup.com/) box with [Devstack](http://devstack.org/).
 
