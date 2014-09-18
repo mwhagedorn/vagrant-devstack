@@ -15,8 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     devstack.vm.box = CONFIG['box']
     devstack.vm.hostname = CONFIG['hostname']
 
-    devstack.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-    devstack.vm.network "forwarded_port", guest: 6080, host: 8081, host_ip: "127.0.0.1"
+    devstack.vm.network "forwarded_port", guest: 80, host: 8080
+    devstack.vm.network "forwarded_port", guest: 6080, host: 8081
 
     devstack.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", "16384"]
