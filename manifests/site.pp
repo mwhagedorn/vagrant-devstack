@@ -13,8 +13,12 @@ define remote_file ($url, $mode = 0644, $owner = $id, $group = $id){
   }
 }
 
-package { ["git", "vim", "zsh", "tmux", "git-review", "python-flake8"]:
+package { ["git", "vim", "zsh", "tmux", "git-review", "python-flake8","avahi-daemon"]:
     ensure => "installed",
+}
+
+service { 'avahi-daemon':,
+  ensure  => running,
 }
 
 vcsrepo { "/home/vagrant/devstack":
